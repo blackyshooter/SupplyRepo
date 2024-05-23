@@ -16,12 +16,30 @@ class CreditoFrances(Credito):
         return cuota
 
 
+class CreditoAleman(Credito):
+    def __init__(self, monto, plazo, interes):
+        super().__init__(monto, plazo, interes)
+
+    def amortizacion(self):
+        cuotas_amortizadas = []
+        for i in range(self.plazo):
+            cuota = int((self.monto / self.plazo) +
+                        (self.monto * self.interes))
+            self.monto -= cuota
+            cuotas_amortizadas.append(cuota)
+
+        return cuotas_amortizadas
+
+
 def main():
     import math
     # Crear una instancia de la clase CreditoFrances
     mi_creditofran = CreditoFrances(120000000, 60, 0.12)
     # Llamar al método amortizacion e imprimir el resultado
     print(math.ceil(mi_creditofran.amortizacion()))
+
+    mi_creditoale = CreditoAleman(120000000, 60, 0.12)
+    print(mi_creditoale.amortizacion())
 
 
 if __name__ == "__main__":
