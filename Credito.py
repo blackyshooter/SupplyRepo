@@ -25,7 +25,7 @@ class CreditoAleman(Credito):
         cuota_capital = self.monto / self.plazo
         saldo = self.monto
         for i in range(self.plazo):
-            interes = saldo * self.interes
+            interes = saldo * self.interes / 12
             cuota_total = int(cuota_capital + interes)
             cuota_capital -= saldo
             cuotas_amortizadas.append(cuota_total)
